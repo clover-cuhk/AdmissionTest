@@ -1,0 +1,30 @@
+<mujoco>
+  <visual>
+    <headlight ambient="0.5 0.5 0.5"/>
+  </visual>
+  <option gravity="0 -9.81 0"/>
+
+  <worldbody>
+    <light diffuse=".5 .5 .5" pos="0 0 3" dir="0 0 -1"/>
+    <body pos="0 0 0" euler="0 0 0">
+      <joint name="joint_1" type="hinge" axis="0 0 1" limited="true" range="-180 180"/>
+      <geom type="sphere" size="0.05" rgba="1 0 0 1"/>
+      <geom name="arm_A" type="cylinder" fromto="0 0 0 1 0 0" size="0.03" rgba="1 1 0 1"/>
+      <body pos="1 0 0">
+        <joint name="joint_2" type="hinge" axis="0 0 1" limited="true" range="-180 180"/>
+        <geom type="sphere" size="0.05" rgba="1 0 0 1"/>
+        <geom name="arm_B" type="cylinder" fromto="0 0 0 1 0 0" size="0.03" rgba="0 1 1 1"/>
+        <body name="dot_body" pos="1 0 0">
+          <site name="dot" type="sphere" size="0.05" rgba="0 0 1 1"/>
+          <inertial pos="0 0 0" mass="1"/>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="M1" joint="joint_1" gear="1"/>
+    <motor name="M2" joint="joint_2" gear="1"/>
+  </actuator>
+
+</mujoco>
